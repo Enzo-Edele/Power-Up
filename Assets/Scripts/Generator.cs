@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Generator : MonoBehaviour
 {
@@ -37,6 +38,11 @@ public class Generator : MonoBehaviour
     float originalUpgradeModuleHealthSize;
     [SerializeField] GameObject UpgradeModuleBar;
 
+    [SerializeField] Button upgradeButton;
+
+    [SerializeField] List<GameObject> healUpgradeVisual;
+    [SerializeField] List<GameObject> upgradeModuleUpgradeVisual;
+    [SerializeField] List<GameObject> winUpgradeVisual;
     void Awake()
     {
         originalGeneratorHealthSize = GeneratorHealthMask.rectTransform.rect.width;
@@ -67,7 +73,10 @@ public class Generator : MonoBehaviour
 
     public void AddPowerBar()
     {
-        mainPowerBar.AddPowerBar();
+        energy++;
+        remainingEnergy++;
+        //mainPowerBar.SetMaxPower(energy, remainingEnergy);
+        //FIND WAY TO UPDATE UI
     }
     public void RemovePowerBar()
     {
@@ -105,11 +114,24 @@ public class Generator : MonoBehaviour
     public void GainUpgradeCoin()
     {
         upgradeCoin++;
+        for (int i = 0; i < towers.Count; i++)
+        {
+            towers[i].ActivateUpgradeButton(true);
+        }
+        ActivateUpgradeButton(true);
     }
 
     public void SpendUpgradeCoin()
     {
         upgradeCoin--;
+        if (upgradeCoin <= 0)
+        {
+            for(int i = 0; i < towers.Count; i++)
+            {
+                towers[i].ActivateUpgradeButton(false);
+            }
+            ActivateUpgradeButton(false);
+        }
     }
 
     void ActivateHealth(bool nState)
@@ -137,5 +159,34 @@ public class Generator : MonoBehaviour
     {
         UpgradeModuleMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalUpgradeModuleHealthSize * (upgradeTimer / upgradeDelay));
         //Debug.Log("upgrade update");
+    }
+
+    void ActivateUpgradeButton(bool nState)
+    {
+        upgradeButton.gameObject.SetActive(nState);
+    }
+    public void ClickUpgradeButton()
+    {
+        UIManager.Instance.ActivateUpgradeMenu(true, true, false);
+    }
+    public void UpgradeGenerator()
+    {
+        AddPowerBar();
+        SpendUpgradeCoin();
+    }
+    public void UpgradeHealModule()
+    {
+        healModule.Upgrade();
+        SpendUpgradeCoin();
+    }
+    public void UpgradeUpgradeModule()
+    {
+        upgradeModule.Upgrade();
+        SpendUpgradeCoin();
+    }
+    public void UpgradeWinModule()
+    {
+        winModule.Upgrade();
+        SpendUpgradeCoin();
     }
 }

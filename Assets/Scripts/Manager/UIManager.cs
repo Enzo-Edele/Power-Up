@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image VictoryMask;
     float originalVictorySize;
     [SerializeField] GameObject VictoryBar;
+
+    [SerializeField] UpgradeSelectMenu upgradeMenu;
     #endregion
 
     public static UIManager Instance { get; private set; }
@@ -33,5 +35,14 @@ public class UIManager : MonoBehaviour
     public void UpdateWinBar(float total, float actual)
     {
         VictoryMask.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, originalVictorySize * (actual / total));
+    }
+
+    public void ActivateUpgradeMenu(bool nState, bool moduleState = false, bool towerState = false)
+    {
+        upgradeMenu.gameObject.SetActive(nState);
+        if (moduleState)
+            upgradeMenu.DisplayModule();
+        if (towerState)
+            upgradeMenu.DisplayTower();
     }
 }

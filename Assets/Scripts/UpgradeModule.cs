@@ -10,6 +10,12 @@ public class UpgradeModule : Module
     }
     public override void ModuleEffect()
     {
-        GameManager.Instance.generator.ChangeLife(1);
+        //Debug.Log("Upgrade");
+        GameManager.Instance.generator.GainUpgradeCoin();
+    }
+
+    public override void Upgrade()
+    {
+        base.Upgrade();
     }
 }

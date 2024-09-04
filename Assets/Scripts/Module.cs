@@ -10,7 +10,7 @@ public class Module : Building
     [SerializeField] BuildingItem moduleItem;
 
     int level = 1; //use for max usable energy
-    [SerializeField]int maxLevel;
+    public int maxLevel;
 
     public void StartGame()
     {
@@ -20,6 +20,10 @@ public class Module : Building
         level = 1;
     }
 
+    public void UpdateBarUI()
+    {
+        moduleItem.powerBar.SetMaxPower(energyMax, energyUse);
+    }
     private void FixedUpdate()
     {
         if (effectTimer < effectDelay && effectTimer >= 0 && GameManager.GameStates.InGame == GameManager.GameState && energyUse > 0)
@@ -38,10 +42,11 @@ public class Module : Building
         //code effect in module script
     }
 
-    public void Upgrade()
+    public virtual void Upgrade()
     {
         level++;
         energyMax = level;
+        UpdateBarUI();
     }
 
     public override bool AddPower()
@@ -50,7 +55,7 @@ public class Module : Building
         {
             energyUse++;
             GameManager.Instance.generator.PlusPowerUsage();
-            Debug.Log("add power test pass");
+            //Debug.Log("add power test pass");
             return true;
         }
         return false;

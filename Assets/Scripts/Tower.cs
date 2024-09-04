@@ -127,8 +127,9 @@ public class Tower : Building
     {
         Upgrade();
         ActivateUpgradeButton(true);
+        GameManager.Instance.generator.SpendUpgradeCoin();
     }
-    void ActivateUpgradeButton(bool nState)
+    public void ActivateUpgradeButton(bool nState)
     {
         UpgradeButton.gameObject.SetActive(nState);
     }
@@ -140,6 +141,8 @@ public class Tower : Building
         //Apply Upgrade
 
         //add power bar max++
+        energyMax++;
         //call UI element
+        towerItemUI.powerBar.SetMaxPower(energyMax, energyUse);
     }
 }

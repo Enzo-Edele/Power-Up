@@ -51,6 +51,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public bool isPaused
+    {
+        get
+        {
+            return gameState == GameStates.PauseTime;
+        }
+    }
+
     void StartGame()
     {
         
@@ -138,4 +146,8 @@ public class GameManager : MonoBehaviour
         GameObject nEnemy = Instantiate(enemyPrefabContact, spawn, Quaternion.identity);
         AddEnemy(nEnemy.GetComponent<Enemy>());
     }
+
+    //add enemy modificator to scale difficulty
+        //enemy hp factor
+        //enemy speed factor
 }

@@ -13,4 +13,9 @@ public class WinModule : Module
     {
         Debug.Log("WIN CONGRATS !!!");
     }
+
+    public override void Upgrade()
+    {
+        base.Upgrade();
+    }
 }

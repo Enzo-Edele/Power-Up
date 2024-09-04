@@ -15,4 +15,9 @@ public class HealModule : Module
         //if full life set timer to complete as module fct auto reset timer (maybe change that behavior)
         GameManager.Instance.generator.ChangeLife(1);
     }
+
+    public override void Upgrade()
+    {
+        base.Upgrade();
+    }
 }

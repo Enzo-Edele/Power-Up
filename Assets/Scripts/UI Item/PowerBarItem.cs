@@ -90,7 +90,7 @@ public class PowerBarItem : MonoBehaviour
                 {
                     cellsList[powerUsage].sprite = cellFull;
                     powerUsage++;
-                    Debug.Log("add power success");
+                    //Debug.Log("add power success");
                 }
             }
         }
