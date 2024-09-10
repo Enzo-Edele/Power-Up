@@ -8,11 +8,11 @@ public class UpgradeSelectItem : MonoBehaviour
     [SerializeField] TMP_Text upgradeName;
     [SerializeField] TMP_Text upgradeDescription;
 
-    [SerializeField] int upgradeType;
+    public int upgradeType;
 
-    public void UpgradeTypeSelection()
+    public void UpgradeTypeSelection(int nType)
     {
-        upgradeType = Random.Range(0, 4);
+        upgradeType = nType;
     }
     public void SelectButton()
     {
@@ -56,5 +56,21 @@ public class UpgradeSelectItem : MonoBehaviour
                     break;
             }
         }
+    }
+
+    public bool CheckIsNotMax(int toCheck)
+    {
+        switch (toCheck)
+        {
+            case 0:
+                return GameManager.Instance.generator.CanUpgradeGenerator();
+            case 1:
+                return GameManager.Instance.generator.CanUpgradeHeal();
+            case 2:
+                return GameManager.Instance.generator.CanUpgradeUpgradeModule();
+            case 3:
+                return GameManager.Instance.generator.CanUpgradeWin();
+        }
+        return false;
     }
 }

@@ -15,6 +15,7 @@ public class Generator : MonoBehaviour
     [SerializeField] GameObject generatorHealthBar;
 
     //energy
+    public int maxEnergy;
     public int energy;
     public int usedEnergy;
     public int remainingEnergy;
@@ -77,6 +78,7 @@ public class Generator : MonoBehaviour
         remainingEnergy++;
         //mainPowerBar.SetMaxPower(energy, remainingEnergy);
         //FIND WAY TO UPDATE UI
+        mainPowerBar.UpdateMainPowerBar(energy, usedEnergy);
     }
     public void RemovePowerBar()
     {
@@ -188,5 +190,21 @@ public class Generator : MonoBehaviour
     {
         winModule.Upgrade();
         SpendUpgradeCoin();
+    }
+    public bool CanUpgradeGenerator()
+    {
+        return energy < maxEnergy;
+    }
+    public bool CanUpgradeHeal()
+    {
+        return healModule.level < healModule.maxLevel;
+    }
+    public bool CanUpgradeUpgradeModule()
+    {
+        return upgradeModule.level < upgradeModule.maxLevel;
+    }
+    public bool CanUpgradeWin()
+    {
+        return winModule.level < winModule.maxLevel;
     }
 }

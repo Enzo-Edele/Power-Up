@@ -57,6 +57,14 @@ public class PowerBarItem : MonoBehaviour
         }
     }
 
+    public void UpdateMainPowerBar(int nMax, int use)
+    {
+        StartGenerator(nMax);
+
+        for(int i = 0; i < use; i++)
+            PlusPowerUsageGenerator();
+    }
+
     public void AddPowerBar()
     {
         cellsList.Add(Instantiate(cellPrefab, transform).GetComponent<Image>());

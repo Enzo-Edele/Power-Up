@@ -12,7 +12,7 @@ public class UIManager : MonoBehaviour
     float originalVictorySize;
     [SerializeField] GameObject VictoryBar;
 
-    [SerializeField] UpgradeSelectMenu upgradeMenu;
+    public UpgradeSelectMenu upgradeMenu;
     #endregion
 
     public static UIManager Instance { get; private set; }

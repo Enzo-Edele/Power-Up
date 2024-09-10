@@ -9,7 +9,7 @@ public class Module : Building
 
     [SerializeField] BuildingItem moduleItem;
 
-    int level = 1; //use for max usable energy
+    public int level { get; private set; } = 1;
     public int maxLevel;
 
     public void StartGame()

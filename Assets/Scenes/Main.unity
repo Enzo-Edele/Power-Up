@@ -11251,6 +11251,7 @@ MonoBehaviour:
   maxLife: 30
   GeneratorHealthMask: {fileID: 1794492332}
   generatorHealthBar: {fileID: 298278394}
+  maxEnergy: 15
   energy: 5
   usedEnergy: 0
   remainingEnergy: 0
@@ -11786,7 +11787,7 @@ MonoBehaviour:
   effectDelay: 5
   effectTimer: 0
   moduleItem: {fileID: 242729946}
-  maxLevel: 5
+  maxLevel: 2
 --- !u!4 &1007115214
 Transform:
   m_ObjectHideFlags: 0
@@ -12519,7 +12520,7 @@ MonoBehaviour:
   effectDelay: 10
   effectTimer: 0
   moduleItem: {fileID: 713783096}
-  maxLevel: 3
+  maxLevel: 2
 --- !u!4 &1128906750
 Transform:
   m_ObjectHideFlags: 0
@@ -19579,7 +19580,7 @@ MonoBehaviour:
   effectDelay: 15
   effectTimer: 0
   moduleItem: {fileID: 283939851}
-  maxLevel: 5
+  maxLevel: 2
 --- !u!1 &1820113316
 GameObject:
   m_ObjectHideFlags: 0
